@@ -1,7 +1,7 @@
 <<<<<<< HEAD
-This is a sample repository to study git
+This is a simple respository 
 
-This is an useless respository
+Coming an idea an writing into github
 =======
 <details>
 <summary>There are many programming langauges</summary>
