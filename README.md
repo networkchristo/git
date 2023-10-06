@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 This is a simple respository 
 
-Coming an idea and writing into github😁
+Getting an idea and publishing into github😁
 =======
 <details>
 <summary>There are many programming langauges</summary>
