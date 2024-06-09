@@ -1,30 +1,39 @@
-# # # echo "File Name : $0"
-# # # echo "First Parameter : $1"
-# # # echo "Second Parameter : $2"
-# # # echo "Quoted Values : $@"
-# # # echo "Quoted Values : $*"
-# # # echo "Total number of Parameters : $#"
+#!/bin/bash
 
-# # for token in $*
-# # do
-# #     echo $token
-# # done
+# Check if at least one argument (host) is provided
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 <host> [start_port] [end_port]"
+  exit 1
+fi
 
-# NAME[0]="Zara"
-# NAME[1]="Qadir"
-# NAME[2]="Mahnaz"
-# NAME[3]="Ayan"
-# NAME[4]="Daisy"
-# echo "First Index: ${NAME[0]}"
-# echo "Second Index: ${NAME[1]}"
+# Define variables
+HOST=$1
+START_PORT=${2:-1}
+END_PORT=${3:-65535}
 
-NAME[0]="Zara"
-NAME[1]="Qadir"
-NAME[2]="Mahnaz"
-NAME[3]="Ayan"
-NAME[4]="Daisy"
+# Function to scan a single port
+scan_port() {
+  local host=$1
+  local port=$2
+  nc -z -w1 $host $port
+  return $?
+}
 
-# echo ${NAME[@]}
+echo "Starting scan on host: $HOST from port $START_PORT to $END_PORT"
 
-val = 'expr 2 + 2'
-echo "Total value : $val"
+# Start time
+START_TIME=$(date +%s)
+
+# Scan ports in the range
+for (( port=$START_PORT; port<=$END_PORT; port++ )); 
+3 do
+  if scan_port $HOST $port; then
+    echo "Port $port is open"
+  fi
+done
+
+# End time
+END_TIME=$(date +%s)
+TOTAL_TIME=$((END_TIME - START_TIME))
+
+echo "Scan completed in $TOTAL_TIME seconds."
