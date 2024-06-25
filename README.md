@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-This is a simple respository 
+This respository is used for testing purposes only
 
 Getting an idea and publishing into github😁
 =======
